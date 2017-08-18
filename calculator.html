@@ -1,0 +1,66 @@
+<html>
+<head>
+<script>
+
+function round(value, decimals) {   //the function to round a number to a certain number of decimals
+  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+}
+
+function myFunction(form) {
+var x = form.x.value;
+var y = form.y.value;
+var z = form.z.value;
+var finalWeight = z / 100;
+var gradeWeight = 1 - finalWeight;
+var need = round(((y - (x * gradeWeight)) / (finalWeight)), 2); //will round the calculated number to 2 decimals
+var message
+
+if (need<70) {
+        var message = "You don't even need to bother studying."
+    }
+
+if (70<need<80) {
+        var message = "Things could be worse."
+    }
+
+  if (80<need<94) {
+        var message = "You'll do fine."
+    }
+
+if (94<need<100) {
+        var message = "Good luck!"
+    }
+
+if (need>100) {
+        var message = "Just give up."
+    }
+
+if (isNaN(x)||x=="" && isNaN(y)||y=="" && isNaN(z)||z=="") { //if all the fields are empty or not numbers
+alert ("Please fill out the form");
+}
+else {
+alert ("You need a " + need + "% on the final to get at least a " +y+ "% in the class. " + message);
+}
+}
+</script>
+
+</head>
+
+<body>
+
+<form>
+Your current grade (%):
+<input class="field" type="text" maxlength="4" name="x" value=""/>
+<br>
+You want at least a (%):
+<input class="field" type="text" maxlength="4" name="y" value=""/>
+<br>
+Your final is worth (%):
+<input class="field" type="text" maxlength="4" name="z" value=""/>
+ <br>
+    <input class="button" type="submit" value="What do I need on my final?" onClick="myFunction(this.form)">
+</form>
+
+
+</body>
+</html>
